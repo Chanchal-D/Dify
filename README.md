@@ -1,44 +1,37 @@
-# Dify
-About The next-gen development platform - Easily build and operate generative AI applications. Create Assistants API and GPTs based on any LLMs.
+# Devlopment with devcontainer
+This project includes a devcontainer configuration that allows you to open the project in a container with a fully configured development environment.
+Both frontend and backend environments are initialized when the container is started.
+## GitHub Codespaces
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/langgenius/dify)
 
-Applications created with Dify include:
+you can simply click the button above to open this project in GitHub Codespaces.
 
-Out-of-the-box web sites supporting form mode and chat conversation mode
-A single API encompassing plugin capabilities, context enhancement, and more, saving you backend coding effort
-Visual data analysis, log review, and annotation for applications
+For more info, check out the [GitHub documentation](https://docs.github.com/en/free-pro-team@latest/github/developing-online-with-codespaces/creating-a-codespace#creating-a-codespace).
 
-## Highlighted Features
-**1. LLMs support:** Choose capabilities based on different models when building your Dify AI apps. Dify is compatible with Langchain, meaning it will support various LLMs. Currently supported:
 
-- [x] **OpenAI**: GPT4, GPT3.5-turbo, GPT3.5-turbo-16k, text-davinci-003 
-- [x] **Azure OpenAI Service**
-- [x] **Anthropic**: Claude2, Claude-instant
-- [x] **Replicate**
-- [x] **Hugging Face Hub**
+## VS Code Dev Containers
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/langgenius/dify)
 
-We provide the following free resources for registered Dify cloud users (sign up at [dify.ai](https://dify.ai)):
-* 200 free OpenAI queries to build OpenAI-based apps
+if you have VS Code installed, you can click the button above to open this project in VS Code Dev Containers.
 
-  
-**2. Visual orchestration:** Build an AI app in minutes by writing and debugging prompts visually.
+You can learn more in the [Dev Containers documentation](https://code.visualstudio.com/docs/devcontainers/containers).
 
-**3. Text embedding:** Fully automated text preprocessing embeds your data as context without complex concepts. Supports PDF, TXT, and syncing data from Notion, webpages, APIs.
 
-**4. API-based:**  Backend-as-a-service. Access web apps directly or integrate via APIs without complex backend setup.
+## Pros of Devcontainer
+Unified Development Environment: By using devcontainers, you can ensure that all developers are developing in the same environment, reducing the occurrence of "it works on my machine" type of issues.
 
-**5. Plugins:** Dify "Smart Chat" now supports first-party plugins like web browsing, Google search, Wikipedia to enable online lookup, analyzing web content, and explaining the AI's reasoning process conversationally.
+Quick Start: New developers can set up their development environment in a few simple steps, without spending a lot of time on environment configuration.
 
-**6. Team workspaces:** Team members can join workspaces to collaboratively edit, manage, and use team AI apps.
+Isolation: Devcontainers isolate your project from your host operating system, reducing the chance of OS updates or other application installations impacting the development environment.
 
-**7. Data labeling and improvement:**  Visually inspect AI app logs and improve data via labeling. Observe the AI's reasoning process to continuously enhance performance. (Coming soon)
+## Cons of Devcontainer
+Learning Curve: For developers unfamiliar with Docker and VS Code, using devcontainers may be somewhat complex.
 
-### Quick Start
+Performance Impact: While usually minimal, programs running inside a devcontainer may be slightly slower than those running directly on the host.
 
-The easiest way to start the Dify server is to run our [docker-compose.yml](docker/docker-compose.yaml) file. Before running the installation command, make sure that [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) are installed on your machine:
+## Troubleshooting
+if you see such error message when you open this project in codespaces:
+![Alt text](troubleshooting.png)
 
-```bash
-cd docker
-docker compose up -d
-```
-
-After running, you can access the Dify dashboard in your browser at [http://localhost/install](http://localhost/install) and start the initialization installation process.
+a simple workaround is change `/signin` endpoint into another one, then login with github account and close the tab, then change it back to `/signin` endpoint. Then all things will be fine.
+The reason is `signin` endpoint is not allowed in codespaces, details can be found [here](https://github.com/orgs/community/discussions/5204)
