@@ -1,37 +1,88 @@
-# Devlopment with devcontainer
-This project includes a devcontainer configuration that allows you to open the project in a container with a fully configured development environment.
-Both frontend and backend environments are initialized when the container is started.
-## GitHub Codespaces
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/langgenius/dify)
+# Dify Frontend
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-you can simply click the button above to open this project in GitHub Codespaces.
+## Getting Started
+### Run by source code
+To start the web frontend service, you will need [Node.js v18.x (LTS)](https://nodejs.org/en) and [NPM version 8.x.x](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/).
 
-For more info, check out the [GitHub documentation](https://docs.github.com/en/free-pro-team@latest/github/developing-online-with-codespaces/creating-a-codespace#creating-a-codespace).
+First, install the dependencies:
 
+```bash
+npm install
+# or
+yarn
+```
 
-## VS Code Dev Containers
-[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/langgenius/dify)
+Then, configure the environment variables. Create a file named `.env.local` in the current directory and copy the contents from `.env.example`. Modify the values of these environment variables according to your requirements:
+```
+# For production release, change this to PRODUCTION
+NEXT_PUBLIC_DEPLOY_ENV=DEVELOPMENT
+# The deployment edition, SELF_HOSTED or CLOUD
+NEXT_PUBLIC_EDITION=SELF_HOSTED
+# The base URL of console application, refers to the Console base URL of WEB service if console domain is
+# different from api or web app domain.
+# example: http://cloud.dify.ai/console/api
+NEXT_PUBLIC_API_PREFIX=http://localhost:5001/console/api
+# The URL for Web APP, refers to the Web App base URL of WEB service if web app domain is different from
+# console or api domain.
+# example: http://udify.app/api
+NEXT_PUBLIC_PUBLIC_API_PREFIX=http://localhost:5001/api
 
-if you have VS Code installed, you can click the button above to open this project in VS Code Dev Containers.
+# SENTRY
+NEXT_PUBLIC_SENTRY_DSN=
+```
 
-You can learn more in the [Dev Containers documentation](https://code.visualstudio.com/docs/devcontainers/containers).
+Finally, run the development server:
 
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-## Pros of Devcontainer
-Unified Development Environment: By using devcontainers, you can ensure that all developers are developing in the same environment, reducing the occurrence of "it works on my machine" type of issues.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Quick Start: New developers can set up their development environment in a few simple steps, without spending a lot of time on environment configuration.
+You can start editing the file under folder `app`. The page auto-updates as you edit the file.
 
-Isolation: Devcontainers isolate your project from your host operating system, reducing the chance of OS updates or other application installations impacting the development environment.
+### Run by Docker
+First, Build the frontend image：
+```bash
+docker build . -t dify-web
+```
 
-## Cons of Devcontainer
-Learning Curve: For developers unfamiliar with Docker and VS Code, using devcontainers may be somewhat complex.
+Then, configure the environment variables.Use the same method mentioned in run by source code.
 
-Performance Impact: While usually minimal, programs running inside a devcontainer may be slightly slower than those running directly on the host.
+Finally, run the frontend service:
+```bash
+docker run -it -p 3000:3000 -e EDITION=SELF_HOSTED -e CONSOLE_URL=http://127.0.0.1:3000 -e APP_URL=http://127.0.0.1:3000 dify-web
+```
 
-## Troubleshooting
-if you see such error message when you open this project in codespaces:
-![Alt text](troubleshooting.png)
+When the console api domain and web app api domain are different, you can set the CONSOLE_URL and APP_URL separately.
 
-a simple workaround is change `/signin` endpoint into another one, then login with github account and close the tab, then change it back to `/signin` endpoint. Then all things will be fine.
-The reason is `signin` endpoint is not allowed in codespaces, details can be found [here](https://github.com/orgs/community/discussions/5204)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Deploy
+### Deploy on server
+First, build the app for production:
+```bash
+npm run build
+```
+
+Then, start the server:
+```bash
+npm run start
+```
+
+If you want to customize the host and port:
+```bash
+npm run start --port=3001 --host=0.0.0.0
+```
+
+## Lint Code
+If your IDE is VSCode, rename `web/.vscode/settings.example.json` to `web/.vscode/settings.json` for lint code setting.
+
+## Documentation
+Visit https://docs.dify.ai/getting-started/readme to view the full documentation.
+
+## Community
+The Dify community can be found on [Discord community](https://discord.com/invite/FngNHpbcY7), where you can ask questions, voice ideas, and share your projects.
