@@ -63,6 +63,6 @@ We will release plugins complying with ChatGPT standard, or Dify's own plugins t
 If your IDE is VSCode, rename `web/.vscode/settings.example.json` to `web/.vscode/settings.json` for the lint code setting.
 
 ## Documentation
-Visit https://docs.dify.ai/getting-started/readme to view the full documentation.
+Visit readme to view the full documentation.
 
 
